@@ -2,22 +2,22 @@
 
 [[package]]
 name = "bpy"
-version = "4.4.0"
+version = "4.5.4"
 description = "Blender as a Python module"
 optional = false
 python-versions = "==3.11.*"
 groups = ["main"]
 files = [
-    {file = "bpy-4.4.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3b8736699a6ea06fed33d2e3042cdd5555409d0b51e2b7274f38be3f9bf774f4"},
-    {file = "bpy-4.4.0-cp311-cp311-macosx_11_0_x86_64.whl", hash = "sha256:9609454d84fd4d668adc82f839d14817f56a14179dd0ddf02ac24580be5ca77b"},
-    {file = "bpy-4.4.0-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:50ee92155cdb8740214fa3b29d9a45ee90cda9dc15eb978860916de468b8580f"},
-    {file = "bpy-4.4.0-cp311-cp311-win_amd64.whl", hash = "sha256:6281ddd11ebe6008db143f422d7dd709c520f3f3574814dd37dda6d9cd85a1ae"},
-    {file = "bpy-4.4.0-cp311-cp311-win_arm64.whl", hash = "sha256:5658b7f9e13dc90a64419038a52585a581fc9ab53ec909bf5199946226f4b0c0"},
+    {file = "bpy-4.5.4-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:3e9dfbc05bef463591a4866e4abc25bcb34301912b67f4887a8dfc27ea871d17"},
+    {file = "bpy-4.5.4-cp311-cp311-macosx_11_0_x86_64.whl", hash = "sha256:75fb3004e33878d76911d74acfe646bfa113c72313b789e979ca5b010f8e4d1a"},
+    {file = "bpy-4.5.4-cp311-cp311-manylinux_2_28_x86_64.whl", hash = "sha256:2ff25d616e570561b907f71ced66eddb8ae23d1f1ebf5d25604c958ffbb3a2d1"},
+    {file = "bpy-4.5.4-cp311-cp311-win_amd64.whl", hash = "sha256:9f8550a951922bdccd3b5e29e05cefc9751aacbb7e33d923d47a80d4b28c778e"},
+    {file = "bpy-4.5.4-cp311-cp311-win_arm64.whl", hash = "sha256:89106e6b4ca3bee7b031c43f7a8eaea6647f51da4378bacc5e59a6c1b105e2d4"},
 ]
 
 [package.dependencies]
 cython = "*"
-numpy = "*"
+numpy = ">=1.26,<2.0"
 requests = "*"
 zstandard = "*"
 
@@ -605,6 +605,8 @@ files = [
     {file = "ruamel.yaml.clib-0.2.14-cp39-cp39-win32.whl", hash = "sha256:6d5472f63a31b042aadf5ed28dd3ef0523da49ac17f0463e10fda9c4a2773352"},
     {file = "ruamel.yaml.clib-0.2.14-cp39-cp39-win_amd64.whl", hash = "sha256:8dd3c2cc49caa7a8d64b67146462aed6723a0495e44bf0aa0a2e94beaa8432f6"},
     {file = "ruamel.yaml.clib-0.2.14.tar.gz", hash = "sha256:803f5044b13602d58ea378576dd75aa759f52116a0232608e8fdada4da33752e"},
+    {file = "ruamel_yaml_clib-0.2.14-cp314-cp314-win32.whl", hash = "sha256:9b4104bf43ca0cd4e6f738cb86326a3b2f6eef00f417bd1e7efb7bdffe74c539"},
+    {file = "ruamel_yaml_clib-0.2.14-cp314-cp314-win_amd64.whl", hash = "sha256:13997d7d354a9890ea1ec5937a219817464e5cc344805b37671562a401ca3008"},
 ]
 
 [[package]]
@@ -964,4 +966,4 @@ cffi = ["cffi (>=1.17,<2.0) ; platform_python_implementation != \"PyPy\" and pyt
 [metadata]
 lock-version = "2.1"
 python-versions = "3.11.*"
-content-hash = "2705f238ebd82e9ae39a04f71220eaa63ea612b717607278f329bae216a401f7"
+content-hash = "2fda66204feaf322ec33f97bc42a4895cc8e323d487235d6f09e14dde18fcf9b"

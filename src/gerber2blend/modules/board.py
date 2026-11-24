@@ -534,6 +534,23 @@ def solder_single(obj: bpy.types.Object) -> None:
     bpy.ops.object.select_all(action="DESELECT")
 
 
+def svg_object_bbox(obj: bpy.types.Object) -> Optional[Tuple[float, float, float, float]]:
+    """World-space (min_x, min_y, max_x, max_y) bounding box of an object."""
+    coords = [obj.matrix_world @ vertex.co for vertex in obj.data.vertices]
+    if not coords:
+        return None
+    return (min(c.x for c in coords), min(c.y for c in coords),
+            max(c.x for c in coords), max(c.y for c in coords))
+
+
+def bbox_contains(outer: Tuple[float, float, float, float],
+                  inner: Tuple[float, float, float, float],
+                  tolerance: float = 1e-6) -> bool:
+    """True if the ``outer`` box fully contains the ``inner`` box."""
+    return (outer[0] <= inner[0] + tolerance and outer[1] <= inner[1] + tolerance
+            and outer[2] >= inner[2] - tolerance and outer[3] >= inner[3] - tolerance)
+
+
 def prepare_solder(base_name: str, scale: float) -> Optional[bpy.types.Object]:
     """Prepare Solder mesh for single board side."""
     input_file = (config.svg_path / base_name).with_suffix(".svg")
@@ -542,6 +559,13 @@ def prepare_solder(base_name: str, scale: float) -> Optional[bpy.types.Object]:
 
     col = import_svg(base_name, input_file, scale, False)
     if isinstance(col, bpy.types.Collection):
+        boxes = {obj: svg_object_bbox(obj) for obj in list(col.objects)}
+        boxes = {obj: box for obj, box in boxes.items() if box is not None}
+        for obj, box in boxes.items():
+            others = [other for other in boxes.values() if other is not box]
+            if others and all(bbox_contains(box, other) for other in others):
+                logger.info(f"Dropping canvas-sized background path from {base_name}")
+                bpy.data.objects.remove(obj, do_unlink=True)
         logger.info(f"Generating {base_name} mesh (may take a while!).")
         bpy.ops.object.select_all(action="DESELECT")
         for obj in col.objects:

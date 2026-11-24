@@ -553,8 +553,7 @@ def bbox_contains(outer: Tuple[float, float, float, float],
 
 def prepare_solder(base_name: str, scale: float) -> Optional[bpy.types.Object]:
     """Prepare Solder mesh for single board side."""
-    input_file = (config.svg_path / base_name).with_suffix(".svg")
-    input_file_fixer = (config.svg_path / f"{base_name}_fixer").with_suffix(".svg")
+    input_file = (config.svg_path / f"{base_name}_fixer").with_suffix(".svg")
     bpy.ops.object.select_all(action="DESELECT")
 
     col = import_svg(base_name, input_file, scale, False)
@@ -578,11 +577,6 @@ def prepare_solder(base_name: str, scale: float) -> Optional[bpy.types.Object]:
         new_obj.name = base_name
         new_obj.data.name = base_name + "_mesh"
         logger.info("Mesh for " + base_name + " created.")
-        fixer = prepare_mesh(base_name + "_fixer", input_file_fixer, False, 1, scale)
-        if fixer is not None:
-            fixer.location[2] -= 0.2
-            boolean_intersect(new_obj, fixer)
-            logger.info("Excessive soldering corrected")
         return new_obj
     return None
 
